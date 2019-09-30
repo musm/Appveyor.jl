@@ -46,10 +46,9 @@ Write-Host "Installing Julia..."
 (new-object net.webclient).DownloadFile($julia_url, $julia_installer)
 
 # Install Julia
-echo $julia_version
 if ($julia_version -ge [Version]"1.3") {
-    echo yes
-    Start-Process -FilePath $julia_installer -ArgumentList "/VERYSILENT /DIR=$julia_path" -NoNewWindow -Wait
+    & $julia_installer /VERYSILENT /DIR=$julia_path
+        echo yes
 } else {
     Start-Process -FilePath $julia_installer -ArgumentList "/S /D=$julia_path" -NoNewWindow -Wait
 }
